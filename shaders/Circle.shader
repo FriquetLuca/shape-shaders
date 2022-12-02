@@ -47,7 +47,7 @@
             }
             half4 frag(v2f i) : SV_Target
             {
-                half4 col = Circle(i.uv * 2 - 1, _Radius);
+                half4 col = Circle(i.uv * 2 - 1, 2 * _Radius);
                 col.a = 1.0;
                 return col;
             }

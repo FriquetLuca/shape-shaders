@@ -2,7 +2,7 @@
 {
     Properties
     {
-        _Radius("Radius", Float) = 0.5
+        _Radius("Radius", Float) = 0.25
         _Height("Height", Float) = 1.0
         _Offset("Offset", Vector) = (0.5, 0.5, 0.0, 0.0)
         _Color("Color", Color) = (1, 1, 1, 1)
