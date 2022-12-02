@@ -27,7 +27,12 @@
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            #include "../../../../../IkiFramework/IkiGraphics/IkiUnity/CGinc/IkiLibrary.cginc"
+            float Grid(float2 uv, float width, float height)
+            {
+                float2 tile = fmod(uv * float2(width, height), 2.0) - 1.0;
+                float2 smooth = smoothstep(0.0, 1.0 / _ScreenParams.xy, tile);
+                return max(smooth.x, smooth.y) - min(smooth.x, smooth.y);
+            }
             struct appdata
             {
                 float4 vertex : POSITION; // Object position

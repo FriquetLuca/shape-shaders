@@ -29,7 +29,13 @@
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            #include "../../../../../IkiFramework/IkiGraphics/IkiUnity/CGinc/IkiLibrary.cginc"
+            float Polygon(float2 uv, int vertices, float size)
+            {
+                float a = atan2(uv.x, uv.y);
+                float b = 6.28319 / float(vertices);
+                float poly = cos(floor(0.5 + a / b) * b - a) * length(uv) - size;
+                return 1.0 - smoothstep(0.0, 1.0 / _ScreenParams.x, poly);
+            }
             struct appdata
             {
                 float4 vertex : POSITION; // Object position

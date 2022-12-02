@@ -27,7 +27,12 @@
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            #include "../../../../IkiFramework/IkiGraphics/IkiUnity/CGinc/IkiLibrary.cginc"
+            float2x2 matrixRotation2D(float angle)
+            {
+                float ac = cos(angle);
+                float as = sin(angle);
+                return float2x2(ac, as, -as, ac);
+            }
             struct appdata
             {
                 float4 vertex : POSITION; // Object position

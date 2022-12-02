@@ -29,7 +29,14 @@
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            #include "../../../../../IkiFramework/IkiGraphics/IkiUnity/CGinc/IkiLibrary.cginc"
+            float Capsule(float2 uv, float height, float radius)
+            {
+                float2 heiUp = float2(0, 0.25) * height;
+                float2 pa = uv - heiUp, ba = (-2) * heiUp;
+                float h = saturate(dot(pa, ba) / dot(ba, ba));
+                float capsule = length(pa - ba * h) - radius;
+                return 1.0 - smoothstep(0.0, 1.0 / _ScreenParams.x, capsule);
+            }
             struct appdata
             {
                 float4 vertex : POSITION; // Object position

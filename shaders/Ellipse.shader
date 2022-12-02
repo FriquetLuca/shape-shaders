@@ -27,7 +27,10 @@
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            #include "../../../../IkiFramework/IkiGraphics/IkiUnity/CGinc/IkiLibrary.cginc"
+            float Ellipse(float2 uv, float width, float height)
+            {
+                return 1.0 - smoothstep(0.0, 1.0 / _ScreenParams.x, (length(uv / float2(width, height)) - 1));
+            }
             struct appdata
             {
                 float4 vertex : POSITION; // Object position

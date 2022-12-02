@@ -30,7 +30,17 @@
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            #include "../../../../../IkiFramework/IkiGraphics/IkiUnity/CGinc/IkiLibrary.cginc"
+            float MultiRing(float2 uv, float2 center, float scale, float radiusA, float radiusB)
+            {
+                float2 delta = uv - center;
+                float radius = length(delta) * 2;
+                float angle = atan2(delta.x, delta.y) * 0.159154943092;
+                float2 polarCoord = float2(radius, angle);
+                float coord = fmod(polarCoord * scale, radiusA + radiusB);
+                float smoothA = smoothstep(0.0, 1.0 / _ScreenParams.x, coord - radiusA);
+                float smoothB = smoothstep(0.0, 1.0 / _ScreenParams.x, coord);
+                return smoothA + 1 - smoothB;
+            }
             struct appdata
             {
                 float4 vertex : POSITION; // Object position

@@ -13,6 +13,7 @@ This repository contains a collection of shaders for [Unity](https://unity.com/)
     - [circleGradient](#circleGradient)
     - [circleLinearGradient](#circleLinearGradient)
     - [cross](#cross)
+    - [customTile](#customTile)
     - [diagonalTriangles](#diagonalTriangles)
     - [ditheringShade](#ditheringShade)
     - [drawingBoxSelector](#drawingBoxSelector)
@@ -58,6 +59,9 @@ This repository contains a collection of shaders for [Unity](https://unity.com/)
 
 ### [cross](#cross)
 ![cross](./images/cross.png "cross")
+
+### [customTile](#customTile)
+![customTile](./images/customTile.png "customTile")
 
 ### [diagonalTriangles](#diagonalTriangles)
 ![diagonalTriangles](./images/diagonalTriangles.png "diagonalTriangles")

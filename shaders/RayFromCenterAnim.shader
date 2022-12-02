@@ -35,7 +35,20 @@
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            #include "../../../../IkiFramework/IkiGraphics/IkiUnity/CGinc/IkiLibrary.cginc"
+            float2x2 matrixRotation2D(float angle)
+            {
+                float ac = cos(angle);
+                float as = sin(angle);
+                return float2x2(ac, as, -as, ac);
+            }
+            float LinesFromCenter(float2 uv, float lines)
+            {
+                float remapAtan01 = atan2(uv.x, uv.y) * 0.159154943092 + 0.5; // 0.159154943092 = 1 / tau
+                float sliceWorld = fmod(lines * remapAtan01, 1.0);
+                float smoothA = 1.0 - smoothstep(0.0, 1.0 / _ScreenParams.x, sliceWorld - 0.5);
+                float smoothB = 1.0 - smoothstep(0.0, 1.0 / _ScreenParams.x, sliceWorld);
+                return smoothA - smoothB;
+            }
             struct appdata
             {
                 float4 vertex : POSITION; // Object position

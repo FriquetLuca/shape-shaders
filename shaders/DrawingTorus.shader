@@ -28,7 +28,19 @@
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            #include "../../../../../IkiFramework/IkiGraphics/IkiUnity/CGinc/IkiLibrary.cginc"
+            float TorusDrawer(float2 uv, float outerRadius, float innerRadius, float fadingIntensity)
+            {
+                float uvsLength = length(uv); // length of the uvs in the range [0; sqrt(2)]
+                float radiusA = outerRadius; // Radius of circle A
+                float radiusB = abs(innerRadius - outerRadius); // Radius of the circle B, using _RadiusB as the distance from _RadiusA to center
+                float circleA = step(uvsLength, outerRadius); // [0;1] => Draw the circle (0 = No circle, 1 = circle)
+                float circleB = step(uvsLength, radiusB); // [0;1] => Draw the circle (0 = No circle, 1 = circle)
+                float absDiffCircle = abs(circleB - circleA); // Donut Mask between circleA and circleB
+                float circleBorders = 1 - saturate(saturate(uvsLength - radiusB) / innerRadius); // Remap the uvs to the distance of the circle A and B borders in the range [0;1]
+                float sliceSmooth = abs(circleBorders - 0.5) * 2; // Slice the fading border in two part for the torus
+                float intensity = 1 - pow(smoothstep(0, 1, sliceSmooth), fadingIntensity); // Intensity of the fading mask
+                return absDiffCircle * intensity;
+            }
             struct appdata
             {
                 float4 vertex : POSITION; // Object position

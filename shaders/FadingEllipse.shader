@@ -27,7 +27,6 @@
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            #include "../../../../IkiFramework/IkiGraphics/IkiUnity/CGinc/IkiLibrary.cginc"
             struct appdata
             {
                 float4 vertex : POSITION; // Object position

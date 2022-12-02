@@ -28,7 +28,17 @@
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            #include "../../../../../IkiFramework/IkiGraphics/IkiUnity/CGinc/IkiLibrary.cginc"
+            float Star(float2 uv, float width, float height, float intensity)
+            {
+                float baseBlendMul = height; // [1; 1.25] Height
+                float opacityBlendSub = width; // [0.15; 35] Width
+                uv = abs(uv); // Anchor transformation, uv in the range [-1; 1]
+                float2 blendMul = 1.0 - lerp(baseBlendMul, baseBlendMul * uv, 0.15);
+                float2 blendSub = lerp(blendMul, blendMul - uv.yx, opacityBlendSub);
+                float2 starArraw = blendSub * 4.0;
+                float star = saturate(max(starArraw.x, starArraw.y));
+                return smoothstep(0.0, 1.0 / _ScreenParams.x, star * 0.1);;
+            }
             struct appdata
             {
                 float4 vertex : POSITION; // Object position

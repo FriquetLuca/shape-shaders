@@ -26,7 +26,11 @@
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            #include "../../../../../IkiFramework/IkiGraphics/IkiUnity/CGinc/IkiLibrary.cginc"
+            float Circle(float2 uv, float radius)
+            {
+                float diameter = 2 * radius;
+                return 1.0 - smoothstep(0.0, 1.0 / _ScreenParams.x, dot(uv, uv) - diameter * diameter);
+            }
             struct appdata
             {
                 float4 vertex : POSITION; // Object position
@@ -47,7 +51,7 @@
             }
             half4 frag(v2f i) : SV_Target
             {
-                half4 col = Circle(i.uv * 2 - 1, 2 * _Radius);
+                half4 col = Circle(i.uv * 2 - 1, _Radius);
                 col.a = 1.0;
                 return col;
             }

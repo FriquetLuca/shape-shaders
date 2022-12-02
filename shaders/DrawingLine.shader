@@ -30,7 +30,21 @@
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            #include "../../../../../IkiFramework/IkiGraphics/IkiUnity/CGinc/IkiLibrary.cginc"
+            float2x2 matrixRotation2D(float angle)
+            {
+                float ac = cos(angle);
+                float as = sin(angle);
+                return float2x2(ac, as, -as, ac);
+            }
+            float LineDrawer(float2 uv, float length, float rotation, float thickness, float fadeIntensity, float borderAliasing)
+            {
+                float2 remapUvs = mul(uv, matrixRotation2D(rotation)); // Do a rotation
+                float px0 = 1 - saturate(abs(remapUvs.x) - (thickness - borderAliasing)) / borderAliasing; // Horizontal fading
+                float py0 = 1 - saturate(saturate(remapUvs.y) - (length - borderAliasing)) / borderAliasing; // Top fading
+                float py1 = saturate(remapUvs.y / borderAliasing); // Bottom fading
+                float2 rect = float2(step(abs(remapUvs.x), thickness), step(remapUvs.y, length) * step(0, remapUvs.y)); // Selected rectangle area
+                return saturate(pow(min(py0 * py1, px0), fadeIntensity)) * rect.x * rect.y;
+            }
             struct appdata
             {
                 float4 vertex : POSITION; // Object position

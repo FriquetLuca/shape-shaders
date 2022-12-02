@@ -27,7 +27,17 @@
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            #include "../../../../IkiFramework/IkiGraphics/IkiUnity/CGinc/IkiLibrary.cginc"
+            static const float4x4 ditherTable = float4x4
+                (-4.0, 0.0, -3.0, 1.0,
+                    2.0, -2.0, 3.0, -1.0,
+                    -3.0, 1.0, -4.0, 0.0,
+                    3.0, -1.0, 2.0, -2.0);
+            float4 DitherColor(float4 color, float2 uv, float colorDepth, float ditherStrength)
+            {
+                uint2 pixelCoord = uv * _ScreenParams.xy;
+                color += ditherTable[pixelCoord.x % 4][pixelCoord.y % 4] * ditherStrength;
+                return round(color * colorDepth) / colorDepth;
+            }
             struct appdata
             {
                 float4 vertex : POSITION; // Object position

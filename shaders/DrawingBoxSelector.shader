@@ -26,7 +26,13 @@
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            #include "../../../../../IkiFramework/IkiGraphics/IkiUnity/CGinc/IkiLibrary.cginc"
+            float BoxSelectorDrawer(float2 uv, float depth)
+            {
+                float2 remapUvs = abs(uv); // Remap uvs to have the circle drawn from the center
+                float intensity = pow(max(remapUvs.x, remapUvs.y), depth);
+                float alpha = smoothstep(0, 1, 1 - intensity);
+                return saturate(0.995 - alpha) + 0.02;
+            }
             struct appdata
             {
                 float4 vertex : POSITION; // Object position

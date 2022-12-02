@@ -28,7 +28,13 @@
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            #include "../../../../../IkiFramework/IkiGraphics/IkiUnity/CGinc/IkiLibrary.cginc"
+            float CircleDrawer(float2 uv, float radius, float borderRadius, float fadingIntensity)
+            {
+                float uvsLength = length(uv); // length of the uvs in the range [0; sqrt(2)]
+                float radiusB = abs(borderRadius - radius); // Radius of the circle B, using _RadiusB as the distance from _RadiusA to center
+                float circleBorders = 1 - saturate(saturate(uvsLength - radiusB) / borderRadius); // Remap the uvs to the distance of the circle A and B borders in the range [0;1]
+                return pow(smoothstep(0, 1, circleBorders), fadingIntensity); // Intensity of the fading mask
+            }
             struct appdata
             {
                 float4 vertex : POSITION; // Object position

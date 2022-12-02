@@ -28,7 +28,13 @@
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            #include "../../../../IkiFramework/IkiGraphics/IkiUnity/CGinc/IkiLibrary.cginc"
+            float RoundRect(float2 uv, float2 size, float radius)
+            {
+                size -= radius;
+                float2 d = abs(uv) - size;
+                float rRect = min(max(d.x, d.y), 0.0) + length(max(d, 0.0)) - radius;
+                return 1 - smoothstep(0.0, 1.0 / _ScreenParams.x, rRect);
+            }
             struct appdata
             {
                 float4 vertex : POSITION; // Object position

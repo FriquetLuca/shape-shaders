@@ -29,7 +29,11 @@
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            #include "../../../../../IkiFramework/IkiGraphics/IkiUnity/CGinc/IkiLibrary.cginc"
+            float Ring(float2 uv, float radius, float width)
+            {
+                float ring = abs(length(uv) - radius * 0.5) - width;
+                return 1.0 - smoothstep(0.0, 1.0 / _ScreenParams.x, ring);
+            }
             struct appdata
             {
                 float4 vertex : POSITION; // Object position
