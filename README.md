@@ -141,5 +141,5 @@ This repository contains a collection of shaders for [Unity](https://unity.com/)
 
 ### [spermatozoid](#spermatozoid)
 
-This one is an easter egg one to show some animation tricks.
+This one is an easter egg to show some animation tricks.
 ![spermatozoid](./images/spermatozoid.png "spermatozoid")
