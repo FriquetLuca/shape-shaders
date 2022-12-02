@@ -39,6 +39,7 @@ This repository contains a collection of shaders for [Unity](https://unity.com/)
     - [roundedRectangle](#roundedRectangle)
     - [sliceUvs](#sliceUvs)
     - [star](#star)
+    - [spermatozoid](#spermatozoid)
 
 ## Shaders
 
@@ -137,3 +138,8 @@ This repository contains a collection of shaders for [Unity](https://unity.com/)
 
 ### [star](#star)
 ![star](./images/star.png "star")
+
+### [spermatozoid](#spermatozoid)
+
+This one is an easter egg one to show some animation tricks.
+![spermatozoid](./images/spermatozoid.png "spermatozoid")
