@@ -1,8 +1,9 @@
 # Shape Shaders
 
-> A collection of shaders representing shapes for textures in [Unity](https://unity.com/).
+> A collection of shaders representing shapes for textures or even how to handle textures in [Unity](https://unity.com/).
 
-This repository contains a collection of shaders for [Unity](https://unity.com/) that represent shapes on a quad. You can use the code to create mask with them so you'll get more complex shapes like houses, characters, cars, vfx, ...
+This repository contains a collection of shaders for [Unity](https://unity.com/) that represent shapes on a quad or ways to handle textures. You can use the code to create mask with them so you'll get more complex shapes like houses, characters, cars, vfx, ...
+I use those ressources as memos, I don't remember from whom some might be even though some other shaders have been made by myself so I let them here and let anyone use them for their own project.
 
 ## Index
 
@@ -33,6 +34,7 @@ This repository contains a collection of shaders for [Unity](https://unity.com/)
     - [line](#line)
     - [lineFromCenter](#lineFromCenter)
     - [multiRing](#multiRing)
+    - [pixelPerfectTiling](#pixelPerfectTiling)
     - [polygon](#polygon)
     - [pyramid](#pyramid)
     - [ring](#ring)
@@ -121,6 +123,9 @@ This repository contains a collection of shaders for [Unity](https://unity.com/)
 ### [multiRing](#multiRing)
 ![multiRing](./images/multiRing.png "multiRing")
 
+### [pixelPerfectTiling](#pixelPerfectTiling)
+![pixelPerfectTiling](./images/pixelPerfectTiling.png "pixelPerfectTiling")
+
 ### [polygon](#polygon)
 ![polygon](./images/polygon.png "polygon")
 
@@ -141,5 +146,5 @@ This repository contains a collection of shaders for [Unity](https://unity.com/)
 
 ### [spermatozoid](#spermatozoid)
 
-This one is an easter egg to show some animation tricks.
+This one is made to show some animation tricks.
 ![spermatozoid](./images/spermatozoid.png "spermatozoid")
